@@ -1,0 +1,158 @@
+<style class="cp-pen-styles">
+body {
+  
+  font: 13px Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+div.header { 
+height: 20px; width: 100%; margin: 25px 0; background: #222; 
+text-align: center; 
+color: white; 
+font: bold 18px Helvetica, Sans-Serif; 
+text-decoration: uppercase; 
+letter-spacing: 20px; 
+padding: 8px 0px; }
+
+div.total-value{ 
+
+height: 20px; 
+margin: auto;
+max-width: 800px;
+text-align: center; 
+font: bold 16px Helvetica, Sans-Serif; 
+text-decoration: uppercase; 
+letter-spacing: 10px; 
+color: black; 
+padding: 8px 0px; 
+border-bottom:1px solid #343a45;
+border-top:1px solid #343a45;
+border-right:1px solid #343a45;
+border-left:1px solid #343a45;}
+
+div.table-title {
+  display: block;
+  margin: auto;
+  max-width: 800px;
+  padding:5px;
+  width: 100%;
+}
+
+.table-title h3 {
+   font-weight: 400;
+   font-style:normal;
+   font: 28px Arial, Helvetica, sans-serif;
+}
+.table-title h4 {
+   padding: 0px 0px 10px 5px;
+   font-weight: 50;
+   font-style:normal;
+   font: 16px Arial, Helvetica, sans-serif;
+}
+
+/*** Table Styles **/
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 150px;
+  margin: auto;
+  max-width: 800px;
+  padding:5px;
+  width: 100%;
+
+  border-bottom:1px solid #343a45;
+  border-top:1px solid #343a45;
+  border-right:1px solid #343a45;
+  border-left:1px solid #343a45;
+
+}
+ 
+th {
+  
+  border-bottom:1px solid #343a45;
+  border-right: 1px solid #343a45;
+  font-size:18px;
+  font-weight: 80;
+  padding:10px;
+  text-align:left;
+
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+ border-bottom:1px solid #343a45;
+  font-size:12px;
+  font-weight:normal;
+  
+}
+ 
+
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+
+
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+
+  padding:10px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:14px;
+  border-right: 1px solid #343a45;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+</style>
