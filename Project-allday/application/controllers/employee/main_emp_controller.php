@@ -11,7 +11,7 @@ class Main_emp_controller extends CI_Controller{
 		$this->load->helper('date');
 		$this->load->model('employee/main_emp_model'); // get class employee_model
 	} 
-/*----TEST3----*/
+/*----TEST5----*/
 	public function index(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
