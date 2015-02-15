@@ -33,7 +33,8 @@
 <th class="text-left">Name Product</th>
 <th class="text-left">Description</th>
 <th class="text-left">Quantity</th>
-<th class="text-left">Price</th>
+<th class="text-left">ราคาชิ้นละ</th>
+<th class="text-left">รวม</th>
 
 </tr>
 </thead>
@@ -50,6 +51,7 @@
 <td class="text-left"><?php echo $u_key->detail_p; ?></td>
 <td class="text-left"><?php echo $u_key->amount; ?></td>
 <td class="text-left"><?php echo $u_key->price_p; ?></td>
+<td class="text-left"><?php echo $u_key->priceTotal; ?></td>
 
 </tr>
 </tbody>
@@ -65,7 +67,7 @@
 </table>
 <br></br>
 
-<div class="total-value">Total : 1,000</div>
+<div class="total-value">Total : <?=number_format($total->priceTotal)?></div>
 
 <br></br>
  <div class="table-title">
@@ -74,7 +76,7 @@
  </div>
 
  
- <?= form_open('sell/sell_product/get_sell')?>
+ <?= form_open('sell/main_sell_controller')?>
 
     <center><input type="submit" value="กลับสู่หน้าแรก"/></center>
 		<?= form_close()?>

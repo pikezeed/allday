@@ -20,13 +20,15 @@ class Main_store_controller extends CI_Controller{
 			//echo "<br>test Post <br>".$this->input->post('total');
 			$date = "%Y-%m-%d %H:%i:%s";
 			$time = now();
-
 			$id_product = $this->input->get('id_product');
 			$data['date'] =  mdate($date, $time);
 			$data['query_product'] = $this->main_product_model->getDataProductById($id_product)->row();
 			//print_r($data['query_product']);
 			$data['query_store']=  $this->main_store_model->getAllData($id_product);
 			$data['query_remain'] = $this->main_store_model->getCountAmountStoreByIdProduct($id_product)->row();
+
+			
+			print_r($data['query_remain']);
 			$this->initialClearCaheImg();
 			$this->load->helper('form');
 			

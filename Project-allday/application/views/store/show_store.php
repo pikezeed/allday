@@ -93,8 +93,10 @@
 
 <center><?php  echo "ไม่พบข้อมูล";} ?></center>
 
-<tr>		
+<tr>	
+<?php if( !empty($query_remain->remain) ) { ?>
 <td style="text-align:right;" colspan="5">มีสินค้าทั้งหมด  <?=$query_remain->remain?> ชิ้น</td>
+<?php } ?>
 </tr>
 </tbody>
 
