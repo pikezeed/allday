@@ -19,12 +19,12 @@ and open the template in the editor.
 			$session = $this->session->userdata('logged_in'); 
 	?>
     <body>
-        <nav id="nav-1">
-            <a class="link-1" href="main_emp_controller">ระบบจัดการพนักงาน</a></a>
-            <a class="link-1" href="#">ระบบจัดการสินค้า</a>
-            <a class="link-1" href="#">ระบบจัดการขายสินค้า</a>
+ <nav id="nav-1">
+            <a class="link-1" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a></a>
+            <a class="link-1" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a>
+            <a class="link-1" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a>
             <a class="link-1" href="<?=site_url()?>/home_controller/logout">Logout</a>
-        </nav>
+</nav> 
         <div class="table-title">
 		<h3>EMPLOYEE</h3>
 	</div>
@@ -42,7 +42,11 @@ and open the template in the editor.
         <?= form_close()?>       
         
         
-       	<div class="table-title" ><a href="<?=site_url()?>/employee/main_emp_controller/viewInsertEmp/"><img src="<?=base_url()?>/assets/imgs/icon/Add_user.png" width="30" height="30"></a></div>
+       	<div class="table-title" >
+		<a href="<?=site_url()?>/employee/main_emp_controller/viewInsertEmp/"><img src="<?=base_url()?>/assets/imgs/icon/Add_user.png" width="30" height="30"></a>
+		<a href="<?=site_url()?>/employee/main_emp_controller/printDetailEmp/"><img src="<?=base_url()?>/assets/imgs/icon/Print.png" width="30" height="30"></a>
+		</div>
+
         <?php if( $session['name_permission'] == "admin" ) { ?>
         <div class="table-title" ><a href="<?=site_url()?>/employee/main_emp_controller/printDetailEmp/">Print</a></div>
         <?php } ?>

@@ -11,10 +11,17 @@
 		$this->output->set_header("Pragma: no-cache");*/
 ?>
      <link href="<?=base_url()?>assets/css/style_edit.css" rel="stylesheet" type="text/css" media="screen" />
+	 <link href="<?=base_url()?>assets/css/style_bar.css" rel="stylesheet" type="text/css" media="screen" />
  <meta charset="UTF-8">
    <title>Detail</title>
  </head>
  <body>
+  <nav id="nav-1">
+            <a class="link-1" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a></a>
+            <a class="link-1" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a>
+            <a class="link-1" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a>
+            <a class="link-1" href="<?=site_url()?>/home_controller/logout">Logout</a>
+</nav>
    <center><h3>Detail</h3></center>
    <?php echo validation_errors(); ?>
    <?php if( !empty($error) ){ echo $error; }?>

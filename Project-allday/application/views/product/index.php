@@ -28,7 +28,7 @@ function show_confirm(act)
  <nav id="nav-1">
             <a class="link-1" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a></a>
             <a class="link-1" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a>
-            <a class="link-1" href="#">ระบบจัดการขายสินค้า</a>
+            <a class="link-1" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a>
             <a class="link-1" href="<?=site_url()?>/home_controller/logout">Logout</a>
 </nav>
 
