@@ -10,59 +10,133 @@ and open the template in the editor.
         <meta charset="UTF-8">
          
         <meta name="viewport" content="width=device-width">
-		<link href="<?=base_url()?>assets/css/style_edit.css" rel="stylesheet" type="text/css" media="screen" />
-		<link href="<?=base_url()?>assets/css/style_bar.css" rel="stylesheet" type="text/css" media="screen" />
+                <link href="<?=base_url()?>assets/css/main.css" rel="stylesheet" type="text/css" media="screen" />
+                <link href="<?=base_url()?>assets/css/table.css" rel="stylesheet" type="text/css" media="screen" />
+                <link href="<?=base_url()?>assets/css/insert_emp.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
     <body>
- <nav id="nav-1">
-            <a class="link-1" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a></a>
-            <a class="link-1" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a>
-            <a class="link-1" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a>
-            <a class="link-1" href="<?=site_url()?>/home_controller/logout">Logout</a>
-</nav>
- 	<h3>Insert</h3>
-           <?php echo validation_errors(); ?>
-		   <?php if(!empty( $error) ){
-					echo $error;
-				 }
-		   ?>
-            <?php echo form_open_multipart('employee/main_emp_controller/insertEmp'); ?>
+       <header>
+            
+           
+                <div class="container_navigation">
+                  <nav>
+                    <a class="link_menuTop" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสิ้นค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/home_controller/logout">Logout</a>
+                  </nav>
+                </div>  
+                
+            
+        </header>
+         <article>
+             <section class="topic">
+                <h1>เพิ่มข้อมูลพนักงาน</h1>
+                <hr>
+             </section>
+             
 
-			
-			<ul class="form-style-1">
-				<li><label >Code:<input type="text" id="code" name="code" class="field-divided"/></label></li>
-				<li><label>Username:<input type="text"id="username" name="username" class="field-divided" /></label></li>
-				<li><label>Password:<input type="password" id="passowrd" name="password" class="field-divided" /></label></li>
-				<li><label>Name:<input type="text" id="name" name="name" class="field-divided" /></label></li>
-				<li><label>Surname:<input type="text"id="surname" name="surname" class="field-divided" /></label></li>
-                                <li><label>Address:<textarea name="address" rows="2" cols="40"  class="field-divided"></textarea> </label></li>
-				<li><label>Email:<input type="text" id="email" name="email" class="field-divided" /></label></li>
-				<li><label>Tel:<input type="text" id="tel" name="tel" class="field-divided" /></label></li>
-				<li>
-				<label>sex:</label>
-					<label>male<input type="radio" id="male" name="sex" value="male" checked/>female<input type="radio" id="female" name="sex" value="female"/></label>
-				</li>
-				<li><label>permission:
-				<select name="id_permission">
-					<option value="1" <?= set_select('id_permission','1',true)?>>admin</option>
-					<option value="2" <?= set_select('id_permission','2')?>>employee</option>
-				</select></label>
-				</li>
-				<li><label>upload image:<input type="file" id="upload_img" name="upload_img"  class="field-divided" /></label></li>
-	
-			<li><input type="submit" value="submit"/></li>
-	
-   
-                </ul>
-            </form>       
+             <section class="showInfo">
+                 <?php echo form_open_multipart('employee/main_emp_controller/insertEmp'); ?>
+                 <ul>
+                     <li>
+                         <label>Code:</label>
+                         <span class="box_right">
+                             <input type="text" name="code" placeholder="EMP0000">
+                         </span>
+                         <?= form_error('code')?>
+                         
+                     </li>
+                     <li>
+                         <label>Username:</label>
+                         <span class="box_right">
+                             <input type="text" name="username">
+                         </span>
+                         <?= form_error('username')?>
+                     </li>
+                     <li>
+                         <label>Password:</label>
+                         <span class="box_right">
+                            <input type="password" name="password">
+                         </span>
+                          <?= form_error('password')?>
+                     </li>
+                     <li>
+                         <label>Name:</label>
+                         <span class="box_right">
+                            <input type="text" name="name">
+                         </span>
+                         <?= form_error('name')?>
+                     </li>
+                     <li>
+                         <label>Surname:</label>
+                         <span class="box_right">
+                             <input type="text" name="surname">
+                         </span>
+                         <?= form_error('surname')?>
+                     </li>
+                     <li>
+                         <label>Address:</label>
+                         <span class="box_right">
+                            <textarea name="address" rows="2" cols="40" ></textarea>
+                         </span>
+                          <?= form_error('address')?>
+                     </li>
+                     <li>
+                         <label>Email:</label>
+                         <span class="box_right">
+                             <input type="text" name="email" placeholder="example@hotmail.com">
+                         </span>
+                          <?= form_error('email')?>
+                     </li>
+                     <li>
+                         <label>Tel-Phone:</label>
+                         <span class="box_right">
+                             <input type="text" name="tel" placeholder="99-9999999">
+                         </span>
+                         <?= form_error('tel')?>
+                     </li>
+                     <li>
+                         <label>Sex:</label>
+                         <span class="box_right">
+                            <label>male:</label>
+                            <input type="radio" name="sex" value="male" checked>
+                            <label>female:</label>
+                            <input type="radio" name="sex" value="female">
+                         </span>
+                     </li>
+                     <li>
+                         <label>Permission:</label>
+                         <span class="box_right">
+                             <select name="id_permission">
+                                 <option value="1" selected="selected">admin</option>
+                                 <option value="2">employee</option>
+                             </select>
+                         </span>
+                     </li>
+                     <li>
+                         <label>Upload Image</label>
+                         <span class="box_right">
+                             <input type="file" id="upload_img" name="upload_img">
+                         </span>
+                     </li>
+                     <li>
+                         <button class="submit" type="submit" >เพิ่มข้อมูล</button>
+                     </li>
+                     <?= form_close()?> 
+                     
+                     
+                 </ul>
+<!--                 <div class="result">
+                     <p>รวม</p>
+                 </div>-->
+             </section>   
+        </article>
         
-        
-        
-        
-        
-        
-        
-        
-
-    </body>
+        <footer>
+             <section class="copyright">Copyright © 2015  All rights reserved.</section>
+        </footer>
+    </body>    
+    
+ 
 </html>

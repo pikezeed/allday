@@ -17,17 +17,17 @@ class Main_emp_model extends CI_Model{
 							 ');
 			$this->db->from('tbl_employee as emp');
 			$this->db->join('tbl_permission as per', 'emp.id_permission = per.id_permission', 'left');
-			$this->db->order_by("emp.date_start","desc");
+			$this->db->order_by("emp.id_emp","desc");
 			$query = $this->db->get();
 			if($query->num_rows() == 0){
 				throw new Exception();
 			}
-			return $query->result();
+                        $this->db->close();
+			return $query->result(); //return data employee
 
 		}catch(Exception $ex){
+                        $this->db->close();
 			return false; // not found any data
-		}finally{
-			$this->db->close();
 		}
 	
 	}
@@ -48,12 +48,12 @@ class Main_emp_model extends CI_Model{
 			if($query->num_rows() == 0){
 				throw new Exception();
 			}
+                        $this->db->close();
 			return $query->result();
 
-		}catch(Exception $ex){
+		}catch(Exception $ex){ // error
+                        $this->db->close();
 			return false; // not found any data
-		}finally{
-			$this->db->close();
 		}
 	}
 	public function getEmpDataById($emp_id){
@@ -69,13 +69,13 @@ class Main_emp_model extends CI_Model{
 			if($query->num_rows() == 0){
 				throw new Exception();
 			}
+                        $this->db->close();
 			return $query->row();
 
 		}catch(Exception $ex){
 			//echo "error";
+                        $this->db->close();
 			return false;
-		}finally{
-			$this->db->close();
 		}
 	}
 	 
@@ -91,13 +91,13 @@ class Main_emp_model extends CI_Model{
 				throw new Exception();
 			}else{
 				$this->db->trans_commit();
+                                $this->db->close();
 				return true;
 			}
 		}catch(Exception $ex){
 			$this->db->trans_rollback();
+                        $this->db->close();
 			return false;
-		}finally{
-			$this->db->close();
 		}
 		
 	
@@ -120,13 +120,13 @@ class Main_emp_model extends CI_Model{
 				throw new Exception();
 			}else{
 				$this->db->trans_commit();
+                                $this->db->close();
 				return true;
 			}
 		}catch(Exception $ex){
 			$this->db->trans_rollback();
+                        $this->db->close();
 			return false;
-		}finally{
-			$this->db->close();
 		}
 	} 
 	public function deleteEmpData($emp_id){
@@ -139,16 +139,15 @@ class Main_emp_model extends CI_Model{
 							  ON tae.id_emp = te.id_emp
 							  WHERE tae.id_emp = ".$this->db->escape(intval($emp_id) )." 
 							 ");
-			if($this->checkExistById($emp_id) != 0){ // data can't not delete yet
+			if($this->checkExistEmpById($emp_id) != 0){ // data can't not delete yet
 				throw new Exception();
 			}
+                        $this->db->close();
 			return true;
 		
 		}catch(Exception $ex){
-			//echo "delete fail".$ex;
-			return false;
-		}finally{
 			$this->db->close();
+			return false;
 		}
 	}
 	public function checkExistEmpByCol($col){
@@ -158,11 +157,11 @@ class Main_emp_model extends CI_Model{
 			if($query->num_rows() > 0){
 				throw new Exception();
 			}
+                        $this->db->close();
 			return true;
 		}catch(Exception $ex){
+                        $this->db->close();
 			return false;
-		}finally{
-			$this->db->close();
 		}
 	}
 	public function checkExistEmpById($emp_id){
@@ -172,18 +171,27 @@ class Main_emp_model extends CI_Model{
 			$this->db->from('tbl_authen_emp as tae');
 			$this->db->join('tbl_employee as te', 'tae.id_emp = te.id_emp', 'left');
 			@$this->db->where('tae.id_emp',$this->db->escape_str( intval($emp_id) ) );
+                        $this->db->close();
 			return $query = $this->db->get()->num_rows();
 
 		}catch(Exception $ex){
-			echo "error";
-			return false;
-		}finally{
 			$this->db->close();
+			return false;
 		}
 	}
 
 	public function getTotalRows(){
-	
+		try{
+			
+			$this->load->database();
+                        $query = $this->db->count_all_results('tbl_employee');       
+                        $this->db->close();
+			return $query;
+
+		}catch(Exception $ex){
+                        $this->db->close();
+			return false; // not found any data
+		}	
 	}
 	
 } 

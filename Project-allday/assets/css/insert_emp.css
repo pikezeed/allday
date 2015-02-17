@@ -1,0 +1,99 @@
+.showInfo{
+/*    border: 1px solid red;
+    box-sizing: border-box;*/
+    font:14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode",sans-serif;
+    font-family: Georgia, Times, "Times New Roman",  serif;
+    font-size: 15px;
+}
+/*-moz-placeholder{
+    color:blue;
+}
+::-webkit-input-placeholder{
+    color:blue;
+}*/
+*:focus{
+    outline: none;
+}
+.showInfo ul{
+    width: 1020px;
+    height: 100%;
+    list-style-type: none;
+    list-style-position: outside;
+/*    box-sizing: border-box;
+    border: 1px solid black;*/
+}
+.showInfo ul li{
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+/*    box-sizing: border-box;
+    border: 1px solid green;*/
+    
+}
+/*.showInfo ul li:first-of-type{
+    border-top: 1px solid #777;
+}*/
+.showInfo ul li:last-child{
+    border-bottom: none;
+}
+.showInfo ul li > label:first-of-type{
+    width: 150px;
+/*    border: 1px solid red;*/
+
+    display: inline-block;
+    float: left;
+    padding: 3px;
+    
+}
+.showInfo textarea{
+    padding: 8px;
+    width: 300px;
+}
+.showInfo button{
+    margin-left: 156px;
+    
+}
+.showInfo input[type="text"],.showInfo textarea{
+    border: 1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 2px 13px #eee inset;
+    border-radius: 2px;
+    
+}
+.showInfo input:focus, .showInfo textarea:focus{
+    background: #fff;
+    border: 1px solid #555;
+    box-shadow: 0 0 3px #aaa;
+}
+button.submit{
+    background-color: #68b12f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
+    background: -webkit-linear-gradient(top, #68b12f, #50911e);
+    background: -moz-linear-gradient(top, #68b12f, #50911e);
+    background: -ms-linear-gradient(top, #68b12f, #50911e);
+    background: -o-linear-gradient(top, #68b12f, #50911e);
+    background: linear-gradient(top, #68b12f, #50911e);
+    border:1px solid #509111;
+    border-bottom: 1px solid #5b992b;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 0 #9fd574;
+    color: white;
+    font-weight: bold;
+    padding: 6px 20px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #396715;
+}
+button.submit:hover{
+    opacity: .85;
+    cursor: pointer;
+}
+button.submit:active{
+    border: 1px solid #20911e;
+    box-shadow: 0 0 10px 5px #356b0b inset;
+}
+.showInfo  .validate_error{
+    width: 200px;
+    color: red;
+    padding-left: 5px;
+/*        box-sizing: border-box;
+    border: 1px solid green;*/
+}

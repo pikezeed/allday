@@ -10,13 +10,18 @@ class Main_emp_controller extends CI_Controller{
 		$this->load->helper('my_session_helper'); // checkIsSession
 		$this->load->helper('date');
 		$this->load->model('employee/main_emp_model'); // get class employee_model
+                
+                
 	} 
 /*----TEST66----*/
 	public function index(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
-		$data['query'] = $this->main_emp_model->getAllEmpData();
+                }else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
+		$data['query']   = $this->main_emp_model->getAllEmpData();
+                 
 		if( !empty($this->data['error']) ){  
 			$data['error'] = $this->data['error']; 	
 		} 
@@ -40,7 +45,9 @@ class Main_emp_controller extends CI_Controller{
 	public function searchByLike(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$code = $this->input->post('code',true);
 		$name = $this->input->post('name',true);
 		$surname = $this->input->post('surname',true);
@@ -64,7 +71,9 @@ class Main_emp_controller extends CI_Controller{
 	public function viewInsertEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 
 
 		
@@ -78,11 +87,14 @@ class Main_emp_controller extends CI_Controller{
 	public function printDetailEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$data['query'] = $this->main_emp_model->getAllEmpData();
+                $data['total'] = $this->main_emp_model->getTotalRows();
 		if( empty($data['query']) ){
 			$this->load->helper('form');
-			$data['error'] = "äÁè¾º¢éÍÁÙÅ";
+			$data['error'] = "à¹„à¸¡à¹ˆà¸žà¸šà¸‚à¹‰à¸­à¸¡à¸¹à¸¥";
 			$this->load->view('employee/print_emp_view',$data);
 		}else{
 			$this->load->helper('date');
@@ -96,7 +108,9 @@ class Main_emp_controller extends CI_Controller{
 	public function viewDetailEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$id = $this->input->get('id_emp',true);
 		$data['query'] = $this->main_emp_model->getEmpDataById($id);
 		
@@ -118,7 +132,9 @@ class Main_emp_controller extends CI_Controller{
 	public function viewEditEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$this->load->helper(array('form','url'));
 		$id = $this->input->get('id_emp',true);
 		$data['query'] = $this->main_emp_model->getEmpDataById($id);
@@ -147,7 +163,9 @@ class Main_emp_controller extends CI_Controller{
 	public function editEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$this->load->library('form_validation');
 		$id_code_original = $this->input->post('id_code_original',true);
 	
@@ -224,8 +242,10 @@ class Main_emp_controller extends CI_Controller{
 	public function insertEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
-
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
+                
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('code',			'Code',			'trim|required|xss_clean|callback_check_codeEmp');
 		$this->form_validation->set_rules('username',		'Username',		'trim|required|xss_clean');
@@ -237,7 +257,7 @@ class Main_emp_controller extends CI_Controller{
 		$this->form_validation->set_rules('tel',			'Tel',			'trim|required|xss_clean');
 		$this->form_validation->set_rules('sex',			'Sex',			'trim|required|xss_clean');
 		
-		
+		$this->form_validation->set_error_delimiters('<label class="validate_error">','</label>');
 
 
 		if( $this->form_validation->run() == false ){
@@ -298,14 +318,16 @@ class Main_emp_controller extends CI_Controller{
 	public function deleteEmp(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		
 		$id_emp = $this->input->get('id_emp',true);
 		if(!$this->main_emp_model->deleteEmpData( $id_emp )){
 			$this->data['error'] = "delete promblem, Please try again";
-			$this->index();
+			redirect('employee/main_emp_controller', 'refresh');
 		}else{
-			$this->index(); // success
+			redirect('employee/main_emp_controller', 'refresh'); // success
 		}
 			
 		
