@@ -16,6 +16,7 @@ class Main_product_controller extends CI_Controller{
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
 		}else{
+                        $data['session'] = $this->session->userdata('logged_in');    
 			$this->load->helper('form');
 			$date = "%Y-%m-%d %H:%i:%s";
 			$time = now();
@@ -38,6 +39,8 @@ class Main_product_controller extends CI_Controller{
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
 		}else{
+                        $data['session'] = $this->session->userdata('logged_in');    
+                     
 			$code = null;
 			$name = null;
 			$code 	= $this->input->post('code')."%";
@@ -57,10 +60,10 @@ class Main_product_controller extends CI_Controller{
 
 			
 		
-			$data = array($code,$name);
+			$param_data = array($code,$name);
 			
-			$data['query']=  $this->main_product_model->searchAllProductData($data)->result();
-			echo "<br>";
+			$data['query']=  $this->main_product_model->searchAllProductData($param_data)->result();
+			
 			
 			$data['date'] =  mdate($date, $time);
 			$this->load->view('product/index',$data);	
@@ -75,7 +78,9 @@ class Main_product_controller extends CI_Controller{
 		$data = null;
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}	
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$this->load->helper('form');
 		if($this->data['error']){
 			$data['error'] = $this->data['error'];
@@ -85,7 +90,11 @@ class Main_product_controller extends CI_Controller{
 
 
 	 public function addProduct(){
-		
+		if(!checkIsSession($this->session->userdata('logged_in')) ){
+			redirect('employee/login_emp_controller/view', 'refresh');
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }		
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('code_id','Code ID','trim|required');
 		$this->form_validation->set_rules('name','Name','trim|required');
@@ -143,6 +152,7 @@ class Main_product_controller extends CI_Controller{
 	/* delete */
 
 	public function deleteProduct(){
+
 		$id_product = $_GET['id_product'];
 		$this->main_product_model->deleteProduct($id_product);
 		redirect('product/main_product_controller','refresh');
@@ -152,7 +162,9 @@ class Main_product_controller extends CI_Controller{
 	public function showEditProduct(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 		$id_product = $this->input->get('id_product');
 		
 		$date = "%Y-%m-%d %H:%i:%s";
@@ -179,7 +191,9 @@ class Main_product_controller extends CI_Controller{
 	public function editProduct(){
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
-		}	
+		}else{
+                    $data['session'] = $this->session->userdata('logged_in');    
+                }
 			
 		$this->load->library('form_validation');
 		$codeId_original = $this->input->post('code_id_original',true);
@@ -220,6 +234,7 @@ class Main_product_controller extends CI_Controller{
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
 		}else{
+                        $data['session'] = $this->session->userdata('logged_in');   
 			$this->load->helper('form');
 			$date = "%Y-%m-%d %H:%i:%s";
 			$time = now();

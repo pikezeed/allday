@@ -6,11 +6,10 @@
         <title>EMPLOYEE</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">    
-        <link href="<?=base_url()?>assets/css/style_table.css" rel="stylesheet" type="text/css" media="screen" />
-<!--        <link href="<?=base_url()?>assets/css/search.css" rel="stylesheet" type="text/css" media="screen" />-->
-        <link href="<?=base_url()?>assets/css/style_bar.css" rel="stylesheet" type="text/css" media="screen" />
+
+ 
         <link href="<?=base_url()?>assets/css/main.css" rel="stylesheet" type="text/css" media="screen" />
-        <link href="<?=base_url()?>assets/css/table.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="<?=base_url()?>assets/css/employee/main_emp.css" rel="stylesheet" type="text/css" media="screen" />
         
         <meta name="viewport" content="width=device-width">
 
@@ -23,7 +22,7 @@
                   <nav>
                     <a class="link_menuTop" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a> |
                     <a class="link_menuTop" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a> |
-                    <a class="link_menuTop" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสิ้นค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a> |
                     <a class="link_menuTop" href="<?=site_url()?>/home_controller/logout">Logout</a>
                   </nav>
                 </div>  
@@ -34,6 +33,7 @@
         <article>
              <section class="topic">
                 <h1>ระบบจัดการพนักงาน</h1>
+                <hr>
              </section>
              <?= form_open('employee/main_emp_controller/searchByLike')?>
              <section class="search">

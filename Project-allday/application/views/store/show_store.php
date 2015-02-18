@@ -7,101 +7,185 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="<?=base_url()?>assets/css/style_edit.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="<?=base_url()?>assets/css/style_table.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="<?=base_url()?>assets/css/style_bar.css" rel="stylesheet" type="text/css" media="screen" />
-<title>Sell</title>
+           <link href="<?=base_url()?>assets/css/main.css" rel="stylesheet" type="text/css" media="screen" />
+           <link href="<?=base_url()?>assets/css/store/show_store.css" rel="stylesheet" type="text/css" media="screen" />
+           <link href="<?=base_url()?>assets/css/store/table_store.css" rel="stylesheet" type="text/css" media="screen" />
+<title>store</title>
 
 </head>
+    <body>
+       <header>
+            
+           
+                <div class="container_navigation">
+                  <nav>
+                    <a class="link_menuTop" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/home_controller/logout">Logout</a>
+                  </nav>
+                </div>     
+                
+            
+        </header>
+         <article>
+             <section class="topic">
+                <h1>เพิ่ม Store สินค้า</h1>
+                <hr>
+             </section>
+             
 
-<body>
- <nav id="nav-1">
-            <a class="link-1" href="main_emp_controller">ระบบจัดการพนักงาน</a></a>
-            <a class="link-1" href="#">ระบบจัดการสินค้า</a>
-            <a class="link-1" href="#">ระบบจัดการขายสินค้า</a>
-            <a class="link-1" href="<?=site_url()?>/home_controller/logout">Logout</a>
-</nav>
-<h3>Store</h3>
-<?php echo form_open_multipart('store/main_store_controller/addStore');?>
-<form >  
-<ul class="form-style-1">
-	<li><label ><center><img src="<?=base_url()."/assets/imgs/product/".$query_product->picture_p?>?<?=$date?>" width="200" height="200" ></center></label></li>
-    <li><label >Product code: <input type="hidden" name="code_id" value="<?= $query_product->code_id?>"/><?php echo $query_product->code_id; ?></label></li>
-    <li><label>Product name: <input type="hidden" name="name" value="<?= $query_product->name_p?>"/><?php echo $query_product->name_p; ?></label></li>
-	<li><label>Price : <input type="hidden" name="price" value="<?= $query_product->price_p?>"/><?php echo $query_product->price_p; ?></label></li>
-	<li><label>detail : <input type="hidden" name="detail" value="<?= $query_product->detail_p?>"/><?php echo $query_product->detail_p; ?></label></li>
-	<!-- <li><label>วันที่สินค้าเข้ามา : <input type="hidden" name="name_p" value="<?= $date?>"/><?php echo $date; ?></label></li>-->
-	<hr>
-	<!-- <li><label>date : <?=$date?></label></li> -->
-
-	<!-- <li><label>รหัส stock: <span style="color:red"><?php if(!empty($error)){ echo $error; }?></span><input type="text" name="code_store"  class="field-divided" /></label></li> -->
-    <!-- <li><label>ราคา:<input type="text" name="price_p"  class="field-divided" /></label></li-->
-	<li><label>จำนวน:</label><span style="color:red;"><?php echo validation_errors();?></span><input type="text" name="total" class="field-divided" /></li>
-	<input type="hidden" name="id_product" value="<?= $_GET['id_product'];?>"/>
-    <li>
-		
-        <input type="submit" name="submit" value="ADD" />
-    </li>
-
-
-
-</ul>
-
-</form>
-
-<!-- ############### delimeter ############# -->
-<table class="table-fill">	
-<thead>
-
-<tr>
-<th class="text-left">No.</th>
-
-
-<!-- <th class="text-left">ราคา ต่อ ชิ้น</th> -->
-<th class="text-left">จำนวน</th>
-
-<th class="text-left">Date</th>
-<th class="text-left">Edit</th>
-<th class="text-left">Delete</th>
-</tr>
-</thead>
- <?php if( $query_store->result() ) { ?>
-			<?php $no = 1; ?>
-<?php foreach ($query_store->result() as $row){ ?>
-
-<tbody class="table-hover">
-<tr>
-<td class="text-left"><?php echo $no; ?></td>
-<!-- <td class="text-left"><?php echo $row->price_p; ?> บาท</td>-->
-<td class="text-left"><?php echo $row->total_p; ?> ชิ้น</td>
-
-<td class="text-left"><?php echo $row->date; ?></td>
-
-<td class="text-left" ><a href="<?php echo base_url("index.php/store/main_store_controller/showEditStore/?id_product=".$_GET['id_product']."&id_store=".$row->id_store); ?>"><center><img src="<?=base_url()?>/assets/imgs/icon/edit.png" width="30" height="30"></center></a></td>
-<td class="text-left" ><a href="<?php echo base_url("index.php/store/main_store_controller/deleteStore/?id_product=".$_GET['id_product']."&id_store=".$row->id_store); ?>"><center><img src="<?=base_url()?>/assets/imgs/icon/delete_1.png" width="25" height="25"><center></a></a></td>
-</tr>
-
-
-	<?php $no++;?>
-	<?php }?>
-
-
-<?php }else{ ?>
-
+             <section class="showInfo">
+                 
+                 <ul>
+                     <li>
+                         <label>Picture</label>
+                         <span class="box_right">
+                             <img src="<?=base_url()."/assets/imgs/product/".$query_product->picture_p?>?<?=$date?>" width="100" height="100" >
+                         </span>
+                     </li>
+                     <li>
+                         <label>Code Product:</label>
+                         <span class="box_right">
+                             <?=$query_product->code_id?>
+                         </span>
+                     </li>
+                     <li>
+                         <label>Name Product:</label>
+                         <span class="box_right">
+                             <?=$query_product->name_p?>
+                         </span>
+                     </li>
+                     <li>
+                         <label>Price:</label>
+                         <span class="box_right">
+                            <?=$query_product->price_p?>
+                         </span>
+                     </li>
+                     <li>
+                         <label>Detail:</label>
+                         <span class="box_right">
+                            <?=$query_product->detail_p?>
+                         </span>
+                         
+                     </li>
+                     <li>
+                         <label>สินค้าใน store:</label>
+                         <span class="box_right">
+                           <?php if( empty($query_total) ){?>
+                              0 ชิ้น
+                           <?php }else{ ?>
+                           <?=$query_total->total?> ชิ้น
+                           <?php } ?>
+                         </span>
+                         
+                     </li>
+                     <li>
+                         <label>ขายไปแล้ว:</label>
+                         <span class="box_right">
+                             
+                             <?php if(empty($query_remain) ){?>
+                                0 ชิ้น
+                             <?php }else{ ?>
+                             <?=$query_remain->total_remain?> ชิ้น
+                             <?php } ?>
+                             
+                         </span>                       
+                     </li>
+                     <li>
+                         <label>คงเหลือสินค้า:</label>
+                         <span class="box_right">
+                             
+                             <?php if( empty($query_total)  || empty($query_remain) ){?>
+                                0 ชิ้น
+                             <?php }else{ ?>
+                             <?=($query_total->total - $query_remain->total_remain)?> ชิ้น
+                             <?php } ?>
+                             
+                         </span>
+                        
+                     </li>
+                     <li></li>
+                     
 
 
+                     
+                     
+                 </ul>
+                 <?php echo form_open_multipart('store/main_store_controller/addStore');?>
+                 <ul>
+                     <li>
+                         <label>เพิ่ม Store:</label>
+                         <span class="box_right">
+                             <input type="text" name="total" >
+                         </span>
+                         <label> ชิ้น</label>
+                     </li> 
+                                       
+                     <li>
+                         <button class="submit" type="submit" >เพิ่มสินค้า</button>
+                     </li>
+                     <input type="hidden" name="code_id" value="<?= $query_product->code_id?>">
+                     <input type="hidden" name="name" value="<?= $query_product->name_p?>">
+                     <input type="hidden" name="price" value="<?= $query_product->price_p?>">
+                     <input type="hidden" name="detail" value="<?= $query_product->detail_p?>">
+                     <input type="hidden" name="id_product" value="<?= $_GET['id_product'];?>">
+                 </ul>
+                 <?= form_close()?> 
+             </section> 
+    <!-- ################### -->
+             <section class="showInfo">
+            
+                 <table class="tbl_emp">
+                     <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>จำนวน</th>
+                            <th>วันและเวลาสินค้าเข้า</th>
+                        </tr> 
+                     </thead>
+                     
+                     <tbody>
+                         <?php if( empty($query_store) ) { ?>
+                         <tr><td colspan="11">ไม่พบข้อมูล</td></tr>
+                         <?php }else{ ?>
+                         
+                            <!-- ##### count No. ##### -->
+                            <?php $no = 1; ?> 
+                            <?php foreach($query_store->result() as $item): ?>
+                       
+                            <tr>
+                                <td><?=$no?></td>
+                                <td><a href="<?=base_url("index.php/store/main_store_controller/showEditStore/?id_product=".$_GET['id_product']."&id_store=".$item->id_store); ?>"><img src="<?=base_url()?>/assets/imgs/icon/edit.png" width="30" height="30"></a></td>
+                                <!-- should be delete both id product in tbl_store and tbl_sell -->
+                                <td><a href="<?=base_url("index.php/store/main_store_controller/deleteStore/?id_product=".$_GET['id_product']."&id_store=".$item->id_store); ?>"><img src="<?=base_url()?>/assets/imgs/icon/delete_1.png" width="25" height="25"></a></td>
+                                <td><?=$item->total_p?> ชิ้น</td>
+                                <td><?=$item->date?></td>
+                               
+                               
+                   
+                              
+                            </tr>
+                            <?php $no++; ?>
+                            <?php endforeach; ?>
+                         <?php } ?>
+                     </tbody>
 
-<center><?php  echo "ไม่พบข้อมูล";} ?></center>
+                 </table>   
+<!--                 <div class="result">
+                     <p>รวม</p>
+                 </div>-->
+             </section> 
+             
+        </article>
+        
+        <footer>
+             <section class="copyright">Copyright © 2015  All rights reserved.</section>
+        </footer>
+    </body>    
+    
+    
 
-<tr>	
-<?php if( !empty($query_remain->remain) ) { ?>
-<td style="text-align:right;" colspan="5">มีสินค้าทั้งหมด  <?=$query_remain->remain?> ชิ้น</td>
-<?php } ?>
-</tr>
-</tbody>
-
-</table>
-<center></center>
-<!--<div><a href="<?=site_url()?>/product/main_product_controller">กลับสู่หน้าหลัก</a></div>-->
-</body>
 </html>

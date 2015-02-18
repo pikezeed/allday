@@ -9,6 +9,7 @@ class Main_store_controller extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->model('product/main_product_model');
 		$this->load->model('store/main_store_model');
+                $this->load->model('sell/main_sell_model');
 		date_default_timezone_set('Asia/Bangkok');	
 	}
 
@@ -17,6 +18,7 @@ class Main_store_controller extends CI_Controller{
 		if(!checkIsSession($this->session->userdata('logged_in')) ){
 			redirect('employee/login_emp_controller/view', 'refresh');
 		}else{
+                        $data['session'] = $this->session->userdata('logged_in');    
 			//echo "<br>test Post <br>".$this->input->post('total');
 			$date = "%Y-%m-%d %H:%i:%s";
 			$time = now();
@@ -25,10 +27,15 @@ class Main_store_controller extends CI_Controller{
 			$data['query_product'] = $this->main_product_model->getDataProductById($id_product)->row();
 			//print_r($data['query_product']);
 			$data['query_store']=  $this->main_store_model->getAllData($id_product);
-			$data['query_remain'] = $this->main_store_model->getCountAmountStoreByIdProduct($id_product)->row();
-
-			
-			print_r($data['query_remain']);
+			$data['query_total'] = $this->main_store_model->getCountAmountStoreByIdProduct($id_product)->row();
+                        $data['query_remain'] = $this->main_store_model->getCountAmountSellByIdProduct($id_product)->row();
+                        if( empty($data['query_total']->total) ){
+                            $data['query_total'] = 0;
+                        }
+                        if( empty($data['query_remain']->total_remain) ){
+                            $data['query_remain'] = 0;
+                        }
+			//print_r($data['query_remain']);
 			$this->initialClearCaheImg();
 			$this->load->helper('form');
 			
@@ -65,7 +72,12 @@ class Main_store_controller extends CI_Controller{
 	/*-- delete store --*/
 	public function deleteStore(){
 		$id_store = $this->input->get('id_store');
+                $id_product = $this->input->get('id_product');
 		$this->main_store_model->deleteData($id_store);
+                $count = $this->main_store_model->getDataByIdProduct($id_product)->num_rows();
+                if($count <= 0){
+                    $this->main_sell_model->deleteDataSell($id_product);
+                }
 		$this->showStore();
 	
 	}

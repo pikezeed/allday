@@ -55,8 +55,9 @@ class Main_emp_controller extends CI_Controller{
 	
 		$data['query'] = $this->main_emp_model->getAllEmpDataByLike($arrayLike);
 		if(!$data['query']){ // not found
-			$this->data['error'] = "not found data";
-			$this->index();
+			//$this->data['error'] = "ไม่พบข้อมูลที่ค้นหา";
+                        $this->load->helper('form');	
+			$this->load->view('employee/main_emp_view',$data);
 		}else{
 			$this->load->helper('form');
 			$this->load->view('employee/main_emp_view',$data);

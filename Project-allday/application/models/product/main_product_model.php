@@ -82,12 +82,12 @@ class Main_product_model extends CI_Model{
 	}
 
 	public function getProductSummary(){
-		$query = @$this->db->query('select * from( 
-											select sum(store.total_p) as sumStore
+		$query = @$this->db->query('select IFNULL(A.sumStore,0) as sumStore,  IFNULL(B.sumAmount,0) as sumAmount  from( 
+											select sum( IFNULL(store.total_p,0) ) as sumStore
 											 from tbl_store as store 
 											) as A,
 											(
-											select sum(sell.amount) as sumAmount
+											select sum( IFNULL(sell.amount,0) ) as sumAmount
 											from tbl_sell as sell
 											) as B'
 								 ,false);

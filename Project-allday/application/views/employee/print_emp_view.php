@@ -11,7 +11,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width">    
 
         <link href="<?=base_url()?>assets/css/main.css" rel="stylesheet" type="text/css" media="screen" />
-        <link href="<?=base_url()?>assets/css/table.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="<?=base_url()?>assets/css/employee/print_emp.css" rel="stylesheet" type="text/css" media="all" />
+        
         <meta name="viewport" content="width=device-width">
     </head>
    <body>
@@ -26,6 +27,7 @@ and open the template in the editor.
         <article>
              <section class="topic">
                 <h1>ข้อมูลพนักงานทั้งหมด</h1>
+                <hr>
              </section>
  
   

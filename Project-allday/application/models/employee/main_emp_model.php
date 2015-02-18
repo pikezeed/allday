@@ -45,10 +45,12 @@ class Main_emp_model extends CI_Model{
 			$this->db->like('emp.surname', $word['surname'], 'after');
 			$this->db->order_by("emp.date_start","desc");
 			$query = $this->db->get();
+                        
 			if($query->num_rows() == 0){
 				throw new Exception();
 			}
                         $this->db->close();
+                        
 			return $query->result();
 
 		}catch(Exception $ex){ // error

@@ -277,6 +277,11 @@ from
 			
 
 	}
+        public function deleteDataSell($id_product){
+            	$this->db->where('id_product', $id_product);
+		$this->db->delete('tbl_sell');	
+            
+        }
 	
 
 }
