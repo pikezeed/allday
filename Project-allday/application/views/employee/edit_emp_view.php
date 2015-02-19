@@ -124,6 +124,13 @@
                          <span class="box_right">
                              <input type="file" id="upload_img" name="upload_img">
                          </span>
+                         <label class="validate_error">
+                            <?php 
+                                if(!empty($error)){
+                                        echo $error;
+                                }
+                            ?>
+                         </label>
                      </li>
                      <li>
                          <button class="submit" type="submit" >แก้ไขข้อมูล</button>

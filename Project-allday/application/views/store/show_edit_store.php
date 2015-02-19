@@ -45,7 +45,9 @@
                          <span class="box_right">
                              <input type="text" name="amount" placeholder="P0001" value="<?=$query_store->total_p; ?>">
                          </span>
+                         <?= form_error('amount')?>
                      </li>
+                      
                      
                      <li>
                          <input type="hidden" name="id_product" value="<?= $_GET['id_product']?>"/>

@@ -120,6 +120,7 @@
                              <input type="text" name="total" >
                          </span>
                          <label> ชิ้น</label>
+                         <?= form_error('total')?>
                      </li> 
                                        
                      <li>
