@@ -19,7 +19,7 @@
                 </span>
                 </a>
 
-                <a href="#" class="css3dbutton pink">
+                <a href="sell/main_sell_controller" class="css3dbutton pink">
                 <span class="outer">
                 <span class="top">ระบบจัดการขายสินค้า</span>
                 </span>

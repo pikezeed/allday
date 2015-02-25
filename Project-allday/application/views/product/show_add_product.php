@@ -5,47 +5,115 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="<?=base_url()?>assets/css/style_edit.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="<?=base_url()?>assets/css/style_bar.css" rel="stylesheet" type="text/css" media="screen" />
-<title>ADD PRODUCT</title>
+                <link href="<?=base_url()?>assets/css/main.css" rel="stylesheet" type="text/css" media="screen" />
+
+                <link href="<?=base_url()?>assets/css/product/insert_product.css" rel="stylesheet" type="text/css" media="screen" />
+<title>เพิ่มข้อมมูลสินค้า</title>
 
 </head>
+    <body>
+       <header>
+            
+           
+                <div class="container_navigation">
+                  <nav>
+                    <a class="link_menuTop" href="<?=site_url()?>/employee/main_emp_controller">ระบบจัดการพนักงาน</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/product/main_product_controller">ระบบจัดการสินค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/sell/main_sell_controller">ระบบจัดการขายสินค้า</a> |
+                    <a class="link_menuTop" href="<?=site_url()?>/home_controller/logout">Logout</a>
+                  </nav>
+                </div>  
+                
+            
+        </header>
+         <article>
+             <section class="topic">
+                <h1>เพิ่มข้อมมูลสินค้า</h1>
+                <hr>
+             </section>
+             
 
-<body>
-<nav id="nav-1">
-	<a class="link-1" href="main_emp_controller">ระบบจัดการพนักงาน</a></a>
-	<a class="link-1" href="#">ระบบจัดการสินค้า</a>
-	<a class="link-1" href="#">ระบบจัดการขายสินค้า</a>
-	<a class="link-1" href="<?=site_url()?>/home_controller/logout">Logout</a>
-</nav>
+             <section class="showInfo">
+                 <?php echo form_open_multipart('product/main_product_controller/addProduct'); ?>
+                 <ul>
+                     <li>
+                         <label>Code Product:</label>
+                         <span class="box_right">
+                             <input type="text" name="code_id" placeholder="P0001">
+                         </span>
+                         <?= form_error('code_id')?>
+                         
+                     </li>
+                     <li>
+                         <label>Name Product:</label>
+                         <span class="box_right">
+                             <input type="text" name="name">
+                         </span>
+                         <?= form_error('name')?>
+                     </li>
+                     <li>
+                         <label>Price:</label>
+                         <span class="box_right">
+                            <input type="text" name="price">
+                         </span>
+                          <?= form_error('price')?>
+                     </li>
 
-<h3>ADD PRODUCT</h3>
-<?php echo form_open_multipart('product/main_product_controller/addProduct');?>
+                     <li>
+                         <label>Detail:</label>
+                         <span class="box_right">
+                            <textarea name="detail" rows="2" cols="40" ></textarea>
+                         </span>
+                          <?= form_error('detail')?>
+                     </li>
+                     <li>
+                         <label>Email:</label>
+                         <span class="box_right">
+                             <input type="text" name="email" placeholder="example@hotmail.com">
+                         </span>
+                          <?= form_error('email')?>
+                     </li>
+                     <li>
+                         <label>Tel-Phone:</label>
+                         <span class="box_right">
+                             <input type="text" name="tel" placeholder="99-9999999">
+                         </span>
+                         <?= form_error('tel')?>
+                     </li>
 
-<form>
-<ul class="form-style-1">
-    <li><label >Code Product <span class="required">* </span><input type="text" name="code_id" name="field1" class="field-divided"  /></label></li>
-    <li><label>Product name <span class="required">*</span><input type="text" name="name" class="field-divided" /></label></li>
-    <li><label>Price (per piece)<span class="required">* </span><input type="text" name="price" class="field-divided" /></label></li>
-	<!-- <li><label>amount <span class="required">* </span><input type="text" name="amount" class="field-divided" /></label></li> -->
-    <li>
-        <label>Detail<span class="required">*</span></label>
-        <textarea type="text" name="detail" class="field-long field-textarea"></textarea>
-    </li>
-	<li><label>Picture <span class="required">* </span><input type="file" name="upload_img" id="upload_img"  class="field-divided" /></label></li>
-	
-    <li>
-        <input type="submit" name="submit" value="Submit" />
-    </li>
-</ul>
-</form>
-<?php echo validation_errors();?>
-<?php 
-	if(!empty($error)){
-		echo $error;
-	}
-?>
-</body>
+                     <li>
+                         <label>Upload Image</label>
+                         <span class="box_right">
+                             <input type="file" id="upload_img" name="upload_img">
+                         </span>
+                         <label class="validate_error">
+                            <?php 
+                                if(!empty($error)){
+                                        echo $error;
+                                }
+                            ?>
+                         </label>
+
+                     </li>
+                     <li>
+                         <button class="submit" type="submit" >เพิ่มข้อมูล</button>
+                     </li>
+                     <?= form_close()?> 
+                     
+                     
+                 </ul>
+<!--                 <div class="result">
+                     <p>รวม</p>
+                 </div>-->
+             </section>   
+        </article>
+        
+        <footer>
+             <section class="copyright">Copyright © 2015  All rights reserved.</section>
+        </footer>
+    </body>    
+    
+
 
 </html>
 

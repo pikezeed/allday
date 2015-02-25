@@ -73,7 +73,7 @@ class Login_emp_controller extends CI_Controller{
 
 						
 				foreach($result_per->result() as $row){	
-					echo $row->roleId;
+					
 					 array_push($this->sess_array['id_role'],$row->roleId);
 					 array_push($this->sess_array['name_role'],$row->roleName);
 				}

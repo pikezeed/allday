@@ -1,4 +1,4 @@
-<?php 
+<?php // 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
@@ -9,13 +9,12 @@ class Home_controller extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('my_session_helper'); // load libray session // âËÅ´ libray session
+		$this->load->helper('my_session_helper'); // load libray session // ï¿½ï¿½Å´ libray session
 	}
-
-	// call landing page //àÃÕÂ¡ home page
+	// call landing page //ï¿½ï¿½ï¿½Â¡ home page
 	public function index()
 	{
-		if(	checkIsSession($this->session->userdata('logged_in')) ){	// check session exist // àªç¤ ÇèÒÁÕ session 
+		if(	checkIsSession($this->session->userdata('logged_in')) ){	// check session exist // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ session 
 			$data['session'] = $this->session->userdata('logged_in');	// set session
 			$this->load->view('home_view', $data);						// view home page
 		}else{

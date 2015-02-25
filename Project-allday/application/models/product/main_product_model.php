@@ -23,7 +23,7 @@ class Main_product_model extends CI_Model{
 	public function getAllProductData(){
 		$query = $this->db->query('select * from(
 									select product.id_product as A_id_product, product.code_id, product.name_p, product.price_p , product.detail_p, product.picture_p, product.date,
-									sum(store.total_p) as total_amount
+									sum( IFNULL(store.total_p,0) ) as total_amount
 									from tbl_product product
 									left join tbl_store store
 									on product.id_product = store.id_product
@@ -82,12 +82,12 @@ class Main_product_model extends CI_Model{
 	}
 
 	public function getProductSummary(){
-		$query = @$this->db->query('select * from( 
-											select sum(store.total_p) as sumStore
+		$query = @$this->db->query('select IFNULL(A.sumStore,0) as sumStore,  IFNULL(B.sumAmount,0) as sumAmount  from( 
+											select sum( IFNULL(store.total_p,0) ) as sumStore
 											 from tbl_store as store 
 											) as A,
 											(
-											select sum(sell.amount) as sumAmount
+											select sum( IFNULL(sell.amount,0) ) as sumAmount
 											from tbl_sell as sell
 											) as B'
 								 ,false);
